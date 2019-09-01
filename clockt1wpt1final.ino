@@ -16,9 +16,9 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 //mqtt
-const char* mqtt_server = "m24.cloudmqtt.com";
-const char *mqtt_user = "jtyxrsnw";
-const char *mqtt_pass = "S4jEb49MlXqZ";
+const char* mqtt_server = "";
+const char *mqtt_user = "";
+const char *mqtt_pass = "";
 
 //weather
 String OPEN_WEATHER_MAP_APP_ID = "d7eec75123dff501749f0efa5a8cc3f4";
@@ -66,7 +66,7 @@ void setup() {
   WiFiManager wifiManager;
   pinMode(D1, INPUT);
   pinMode(D2, INPUT);
-  wifiManager.autoConnect("LoveU","1325897");
+  wifiManager.autoConnect("Name","Pass");
   P.print("Connected");
  // Serial.println("Connected To Wifi :)");
   client.setServer(mqtt_server, 15537);
@@ -113,17 +113,10 @@ void callback(char* topic, byte* message, unsigned int length) {
   }
   else if (String(topic) == "esp32/city"){
       Serial.print("City Changed To: ");
-      if(messageTemp == "rishon"){
-      Serial.println(messageTemp);
-      OPEN_WEATHER_MAP_LOCATION_ID = "293396";
-      }
-      else if(messageTemp == "holon"){
+      if(messageTemp == "TLV"){
       Serial.println(messageTemp);
       OPEN_WEATHER_MAP_LOCATION_ID = "294751";
       }
-      else if(messageTemp == "modiin"){
-      Serial.println(messageTemp);
-      OPEN_WEATHER_MAP_LOCATION_ID = "6693679";
       }
       else {
       Serial.println(messageTemp);
